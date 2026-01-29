@@ -1,15 +1,22 @@
-/* LandingPage.css */
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
+/* App Container */
+.app-container {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Landing Page */
 .landing-page {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   background-color: #f8f8f8;
 }
 
@@ -20,128 +27,185 @@
   width: 100%;
   height: 100%;
   background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
-  background-size: 100% 100%;
+  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   filter: brightness(0.8);
+  z-index: 1;
 }
+
 .content {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
- top: 100px;
-  backdrop-filter: blur(4px);
-  background-color: rgba(0,0,0,0.5);
-  gap: 20px;
+  min-height: 100vh;
+  width: 100%;
+  gap: 40px;
+  padding: 40px;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .landing_content {
- margin-top: 430px;
-  margin-left: 100px;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  flex: 1;
+  max-width: 600px;
   text-align: center;
-  /* background-color: red; */
-  width: 400px;
-  height: 400px;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 }
 
-.content p,
 .content h1 {
+  font-size: clamp(36px, 5vw, 56px);
   color: white;
-}
-
-.content h1 {
-  font-size: 48px;
   margin-bottom: 10px;
+  line-height: 1.2;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .content p {
-  font-size: 25px;
+  font-size: clamp(20px, 3vw, 28px);
+  color: white;
+  font-style: italic;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .divider {
-  width: 50px;
-  height: 2px;
+  width: 100px;
+  height: 3px;
   background-color: #4caf50;
-  margin: 10px 0;
+  margin: 20px 0;
+  border-radius: 2px;
 }
 
 .get-started-button {
-  padding: 15px 25px;
-  font-size: 23px;
+  padding: 16px 40px;
+  font-size: 20px;
+  font-weight: bold;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #4caf50;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 40px;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .get-started-button:hover {
-  background-color: #45a049;
+  background-color: #3d8b40;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* ProductList.css */
+.get-started-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
 
+.aboutus_container {
+  flex: 1;
+  max-width: 600px;
+  background-color: rgba(26, 46, 26, 0.95); /* Dark green background */
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  max-height: 80vh;
+  border: 2px solid #4caf50;
+}
+
+.aboutus_container * {
+  color: #f0f0f0 !important; /* Light text for better contrast */
+}
+
+/* Product List Container */
 .product-list-container {
   position: absolute;
-  overflow-x: hidden;
   top: 100vh;
-  /* Initially off-screen */
   left: 0;
   width: 100%;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.9);
-  /* Adjust background opacity as needed */
+  min-height: 100vh;
+  background-color: white;
   transition: top 0.5s ease;
-  /* Smooth transition for top property */
   overflow-y: auto;
-  /* Enable vertical scrolling */
-  z-index: 2;
-  /* Ensure it's above landing page content */
-  backdrop-filter: blur(5px);
+  z-index: 10;
+  padding: 20px;
 }
 
 .product-list-container.visible {
   top: 0;
 }
-/* LandingPage.css */
-@media screen and (max-width: 768px) {
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
   .content {
     flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
+    gap: 30px;
+    padding: 30px 20px;
   }
-
+  
   .landing_content {
-    margin-top: 100px; /* Adjust as needed */
-    margin-left: 0;
-    width: 80%; /* Adjust as needed */
-    text-align: center;
+    max-width: 100%;
+    order: 1;
   }
-
+  
   .aboutus_container {
-    margin-top: 20px; /* Adjust as needed */
-    width: 80%; /* Adjust as needed */
+    max-width: 100%;
+    order: 2;
+    max-height: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 20px 15px;
+    gap: 25px;
+  }
+  
+  .content h1 {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+  
+  .content p {
+    font-size: clamp(18px, 4vw, 24px);
+  }
+  
+  .get-started-button {
+    padding: 14px 30px;
+    font-size: 18px;
+  }
+  
+  .aboutus_container {
+    padding: 20px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .landing_content {
-    margin-top: 50px; /* Adjust as needed */
-    width: 90%; /* Adjust as needed */
+  .content {
+    padding: 15px 10px;
+    gap: 20px;
   }
-
+  
+  .landing_content {
+    gap: 15px;
+  }
+  
+  .divider {
+    width: 80px;
+    margin: 15px 0;
+  }
+  
+  .get-started-button {
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+  
   .aboutus_container {
-    width: 90%; /* Adjust as needed */
+    padding: 15px;
   }
 }
